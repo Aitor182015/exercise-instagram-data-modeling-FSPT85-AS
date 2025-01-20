@@ -1,0 +1,59 @@
+---------------------------------------------------------------------------------------------------------------------------
+Tabla User:
+
+Campos:
+id: Id del usuario (clave primaria)
+username: Nombre de usuario y es unico
+firstname: nombre real del usuario
+lastname: aplelidos del usuario
+email: correo del usuario (único).
+Relaciones:
+usuario puede tener muchos posts (relacion uno a muchos con post)
+usuario puede comentar muchos posts (relacion uno a muchos con comment)
+usuario puede seguir a muchos usuarios (relacion muchos a muchos con user a través de la tabla follower)
+suario puede ser seguido por muchos usuarios (muchos a muchos con user a través de la tabla follower)
+
+---------------------------------------------------------------------------------------------------------------------
+
+Tabla Post:
+
+
+id: Id del usuariio (clave primaria)
+user_id:id del usuario que creó el post (clave foranea a user)
+Relaciones:
+1 post puede tener muchos comentarios (relacion uno a muchos con comment)
+1 post puede tener muchos mmultimedias (relación uno a muchos con mdia)
+cada post tiene usuario (relacion muchos a uno con user)
+
+------------------------------------------------------------------------------------------------------------------
+
+Tabla comments:
+
+id: Iddel comentario (clave primaria)
+comment_text: comentario
+author_id: id del usuario que hizo el comentario (clave foranea a user)
+post_id: id del post al que pertenece el comentario (clave foranea a post)
+Relaciones:
+cada comentario tiene un solo autor (relacion muchos a uno con user)
+cada comentario esta asignmado a un solo post (relacion muchos a uno con post)
+
+----------------------------------------------------------------------------------------------------------------
+
+Tabla Media:
+
+id: Id del media.
+type: tipo de medio (imagen, video, etc.)
+url: URL del media
+post_id: id del post asociado al medio (clave foranea a post)
+Relaciones:
+cada media está vinculado a un solo post (relacion muchos a uno con post)
+
+---------------------------------------------------------------------------------------------------------
+
+Tabla follower:
+
+user_from_id: id del usuario que sigue a otro "FOLLOWER" (clave foranea a user)
+user_to_id: Referencia al id del usuario que es seguido "FOLLOWED" (clave foranea a user)
+Relaciones:
+un usuario puede tener muchos seguidores (relacion muchos a uno con User a través de user_to_id).        |    O lo que es lo mismo
+un usuario puede seguir a muchos usuarios (relacion muchos a uno con User a través de user_from_id).     |    muchos a muchos
